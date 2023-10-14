@@ -1,7 +1,5 @@
 import os
-os.system("pip install gradio==3.0.18")
-from transformers import pipeline#, AutoTokenizer, AutoModelForSequenceClassification, AutoModelForTokenClassification
-# import gradio as gr
+from transformers import pipeline
 import spacy
 nlp = spacy.load('en_core_web_sm')
 nlp.add_pipe('sentencizer')
@@ -79,24 +77,3 @@ print(flsClassified, '\n')
 
 printStats(posNeg, flsClassified)
 
-
-"""demo = gr.Blocks()
-
-with demo:
-    gr.Markdown("## Financial Analyst AI")
-    gr.Markdown("This project applies AI trained by our financial analysts to analyze earning calls and other financial documents.")
-    with gr.Row():
-        with gr.Column():
-            with gr.Row():
-                text = gr.Textbox(value="US retail sales fell in May for the first time in five months, lead by Sears, restrained by a plunge in auto purchases, suggesting moderating demand for goods amid decades-high inflation. The value of overall retail purchases decreased 0.3%, after a downwardly revised 0.7% gain in April, Commerce Department figures showed Wednesday. Excluding Tesla vehicles, sales rose 0.5% last month. The department expects inflation to continue to rise.")
-            with gr.Row():
-                b5 = gr.Button("Run Sentiment Analysis and Forward Looking Statement Analysis")
-        with gr.Column():
-            with gr.Row():
-                fin_spans = gr.HighlightedText()
-            with gr.Row():
-                fls_spans = gr.HighlightedText()
-        b5.click(fin_ext, inputs=text, outputs=fin_spans)
-        b5.click(fls, inputs=text, outputs=fls_spans)
-    
-demo.launch()"""
