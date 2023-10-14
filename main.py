@@ -46,9 +46,9 @@ def printStats(posNeg, flsClassified):
         counterPosNeg[sentence[1]] += 1
 
     numSentences = len(posNeg)
-    print(f"Negative sentences: {counterPosNeg['Negative']/numSentences}")
-    print(f"Neutral sentences: {counterPosNeg['Neutral']/numSentences}")
-    print(f"Positive sentences: {counterPosNeg['Positive']/numSentences}")
+    print(f"Negative sentences: {counterPosNeg['Negative']/numSentences*100:.02f}%")
+    print(f"Neutral sentences: {counterPosNeg['Neutral']/numSentences*100:.02f}%")
+    print(f"Positive sentences: {counterPosNeg['Positive']/numSentences*100:.02f}%\n")
 
     counterFls = {
         'Not FLS': 0,
@@ -56,14 +56,21 @@ def printStats(posNeg, flsClassified):
         'Non-Specific FLS': 0
     }
 
-    for sentence in flsClassified
+    for sentence in flsClassified:
+        counterFls[sentence[1]] += 1
 
+    
+    print(f"Not FLS sentences: {counterFls['Not FLS']/numSentences*100:.02f}%")
+    print(f"Non-Specific FLS sentences: {counterFls['Non-Specific FLS']/numSentences*100:.02f}%")
+    print(f"Specific FLS sentences: {counterFls['Specific FLS']/numSentences*100:.02f}%")
+    
 
+posNeg = fin_ext(finData)
+print(posNeg, '\n')
+flsClassified = fls(finData)
+print(flsClassified, '\n')
 
-print(fin_ext(finData))
-print()
-print()
-print(fls(finData))
+printStats(posNeg, flsClassified)
 
 
 """demo = gr.Blocks()
