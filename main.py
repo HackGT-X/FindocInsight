@@ -21,7 +21,7 @@ nlp.add_pipe('sentencizer')
 st.title('Financial Document Info')
 
 # create dropdown
-documents = ['Custom', 'Nvidia Stocks', 'Tesla 10k', 'Google Financial Report']
+documents = ['Nvidia Stocks', 'Tesla 10k', 'Google Financial Report', 'Custom']
 document_select = st.selectbox(
     'Select a financial document to analyze', documents)
 
@@ -35,17 +35,17 @@ document_select = st.selectbox(
 finData = ""
 
 # check the selected document and update finData accordingly
-if document_select == 'Custom':
-    finData = ""
+if document_select == 'Tesla 10k':
+    with open('tesla.txt', 'r') as f:
+        finData = f.read()
 elif document_select == 'Nvidia Stocks':
     with open("nvidia.txt", "r") as f:
-        finData = f.read()
-elif document_select == 'Tesla 10k':
-    with open('tesla.txt', 'r') as f:
         finData = f.read()
 elif document_select == 'Google Financial Report':
     with open("google.txt", "r") as f:
         finData = f.read()
+elif document_select == 'Custom':
+    finData = ""
 
 
 # display selected document content in the text area
@@ -200,4 +200,5 @@ def printStats(posNeg, flsClassified):
 
 # st.markdown(results, unsafe_allow_html=True)
 if output:
-    printStats(posNeg, flsClassified)
+    if finData != "":
+        printStats(posNeg, flsClassified)
