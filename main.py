@@ -20,6 +20,13 @@ nlp.add_pipe('sentencizer')
 
 st.title('Financial Document Info')
 
+# set finData to the user input
+finData = st.text_area('Enter text here', height=200)
+
+# create a streamlit butotn that calls the printStats function
+output = st.button(
+    'Run Sentiment Analysis and Forward Looking Statement Analysis')
+
 
 def split_in_sentences(text):
     doc = nlp(text)
@@ -54,9 +61,6 @@ def fls(text):
     return make_spans(text, results)
 
 
-# set finData to the user input
-finData = st.text_area('Enter text here', height=200)
-
 posNeg = fin_ext(finData)
 findFls = fls(finData)
 
@@ -76,14 +80,14 @@ def printStats(posNeg, flsClassified):
     percentNeu = counterPosNeg['Neutral'] / numSentences * 100
     percentPos = counterPosNeg['Positive'] / numSentences * 100
 
-    st.write(f"Negative sentences: {percentNeg:.02f}%")
-    st.write(f"Neutral sentences: {percentNeu:.02f}%")
-    st.write(f"Positive sentences: {percentPos:.02f}%\n")
+    # st.write(f"Negative sentences: {percentNeg:.02f}%")
+    # st.write(f"Neutral sentences: {percentNeu:.02f}%")
+    # st.write(f"Positive sentences: {percentPos:.02f}%\n")
 
     # Labels and values for the pie chart
     labels = ['Negative', 'Neutral', 'Positive']
     sizes = [percentNeg, percentNeu, percentPos]
-    colors = ['red', 'gray', 'green']
+    colors = ['#ff8080', '#dddddd', '#99ff99']
     explode = (0.1, 0, 0)  # explode the 1st slice (i.e., 'Negative')
 
     # Plotting the pie chart
@@ -113,14 +117,26 @@ def printStats(posNeg, flsClassified):
     st.write(counterFls)
 
 
-posNeg = fin_ext(finData)
-print(posNeg, '\n')
-flsClassified = fls(finData)
-print(flsClassified, '\n')
+label_styles = {
+    'Positive': 'background-color: #99ff99;',
+    'Neutral': 'background-color: #dddddd;',
+    'Negative': 'background-color:  #ff8080;'
+}
 
-# create a streamlit butotn that calls the printStats function
-output = st.button(
-    'Run Sentiment Analysis and Forward Looking Statement Analysis')
+posNeg = fin_ext(finData)
+print("POSTNEG", posNeg, '\n')
+
+st.write("posNeg variables:")
+fin_output = ""
+for text, label in posNeg:
+    # Apply CSS styles based on the label
+    label_style = label_styles.get(label, '')
+    st.markdown(
+        f'<span style="{label_style}">{text}</span>', unsafe_allow_html=True)
+
+
+flsClassified = fls(finData)
+print("FINCLASSIFIED", flsClassified, '\n')
+
 if output:
     printStats(posNeg, flsClassified)
-
