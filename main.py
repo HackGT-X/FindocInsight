@@ -1,17 +1,13 @@
 # , AutoTokenizer, AutoModelForSequenceClassification, AutoModelForTokenClassification
 import os
-from transformers import pipeline
+import en_core_web_sm
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import spacy
 import streamlit as st
-import pandas as pd
-import numpy as np
-
 # , AutoTokenizer, AutoModelForSequenceClassification, AutoModelForTokenClassification
 from transformers import pipeline
-import spacy
-import en_core_web_sm
-import os
-import matplotlib.pyplot as plt
 
 # os.system("pip install gradio==3.0.18")
 # import gradio as gr
@@ -71,7 +67,7 @@ def make_spans(text, results):
 
 
 # Fiscal Sentiment by Sentence
-fin_model = pipeline("sentiment-analysis", model='FinanceInc/auditor_sentiment_finetuned',
+fin_model = pipeline("sentiment-analysis", model='FinanceInc/auditor_sentiment_finetuned', from_pt=True,
                      tokenizer='FinanceInc/auditor_sentiment_finetuned')
 
 
