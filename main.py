@@ -184,6 +184,7 @@ def printStats(posNeg, flsClassified):
     plt.xlabel('Categories')
     plt.ylabel('Values')
     plt.title('Bar Chart for FLS Categories')
+    plt.bar_label(plt.bar(categories, values, color=['#ff8080', '#99ff99', '#dddddd']))
     plt.show()
     st.pyplot(plt)
 
@@ -193,7 +194,7 @@ def printStats(posNeg, flsClassified):
     # print(
     #     f"Specific FLS sentences: {counterFls['Specific FLS']/numSentences*100:.02f}%")
 
-    st.write(counterFls)
+    #st.write(counterFls)
 
 
 # results = f'<table><tr><th>Positive/Neutral/Negative Sentences</th><th>Forward Leaning Statements:</th><tr><td>{postneg_output}</td><td>{fin_output}</td></tr></table>'
