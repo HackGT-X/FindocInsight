@@ -1,4 +1,4 @@
-en_core_web_sm==3.7.0
+en_core_web_sm
 numpy==1.22.4
 pandas==1.5.3
 spacy==3.7.1
