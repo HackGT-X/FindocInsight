@@ -7,4 +7,3 @@ gradio==3.0.18
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0.tar.gz#egg=en_core_web_sm
 https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.7.0/es_core_news_sm-3.7.0.tar.gz
 tensorflow
-pytorch
