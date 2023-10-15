@@ -67,7 +67,7 @@ def make_spans(text, results):
 
 
 # Fiscal Sentiment by Sentence
-fin_model = pipeline("sentiment-analysis", model='FinanceInc/auditor_sentiment_finetuned', from_pt=True,
+fin_model = pipeline("sentiment-analysis", model='FinanceInc/auditor_sentiment_finetuned',
                      tokenizer='FinanceInc/auditor_sentiment_finetuned')
 
 
